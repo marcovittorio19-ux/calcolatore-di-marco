@@ -1,12 +1,9 @@
-body { font-family: 'Inter', sans-serif; background: #0f172a; color: white; display: flex; flex-direction: column; align-items: center; padding: 40px; }
+body { font-family: 'Inter', sans-serif; background: #0f172a; color: white; display: flex; flex-direction: column; align-items: center; padding: 40px; margin: 0; }
 header { text-align: center; margin-bottom: 30px; }
+.logo { width: 150px; height: auto; display: block; margin: 0 auto 20px auto; }
 .card { background: #1e293b; padding: 30px; border-radius: 15px; box-shadow: 0 10px 15px rgba(0,0,0,0.3); text-align: center; }
-input { padding: 12px; width: 300px; border-radius: 8px; border: none; font-size: 16px; }
-button { padding: 12px 25px; background: #3b82f6; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-left: 10px; }
+input { padding: 12px; width: 250px; border-radius: 8px; border: none; font-size: 16px; }
+button { padding: 12px 20px; background: #3b82f6; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-left: 10px; }
 button:hover { background: #2563eb; }
 .spiegazione { margin-top: 40px; max-width: 600px; line-height: 1.6; color: #94a3b8; }
-.logo {
-    width: 150px; /* Imposta la dimensione che preferisci */
-    height: auto;
-    margin-bottom: 10px;
-}
+#risultato { margin-top: 20px; font-size: 1.2rem; color: #38bdf8; }
