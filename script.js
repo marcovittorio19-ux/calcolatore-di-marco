@@ -4,47 +4,50 @@ function calcola() {
     
     let an = Math.abs(coeff[0]);
     let a0 = Math.abs(coeff[coeff.length - 1]);
-    
     let radiciTrovate = [];
 
-    // Trova divisori di n
-    const getDivisori = (n) => {
-        let div = [];
-        for (let i = 1; i <= n; i++) {
-            if (n % i === 0) div.push(i, -i);
+    // Funzione per convertire decimale in frazione (es. 0.5 -> "1/2")
+    function decimaleAFrazione(n) {
+        let tolleranza = 1.0E-6;
+        let num = 1, den = 1;
+        let valore = n;
+        while (Math.abs(valore - Math.round(valore)) > tolleranza) {
+            valore = 1 / (valore - Math.floor(valore));
+            let temp = num;
+            num = Math.round(Math.floor(valore) * num + den);
+            den = temp;
         }
-        return div;
-    };
+        let intero = Math.round(n * den);
+        return intero + "/" + den;
+    }
 
-    let divA0 = getDivisori(a0);
-    let divAn = getDivisori(an);
-
-    // Genera candidati p/q (Teorema delle radici razionali)
+    // Ricerca radici (come prima)
     let candidati = new Set();
-    for (let p of divA0) {
-        for (let q of divAn) {
-            candidati.add(p / q);
+    for (let p = 1; p <= a0; p++) {
+        if (a0 % p === 0) {
+            for (let q = 1; q <= an; q++) {
+                if (an % q === 0) {
+                    candidati.add(p / q);
+                    candidati.add(-p / q);
+                }
+            }
         }
     }
 
-    // Testiamo con Horner
     for (let c of candidati) {
         let resto = 0;
-        for (let i = 0; i < coeff.length; i++) {
-            resto = resto * c + coeff[i];
-        }
-        if (Math.abs(resto) < 0.000001) {
-            radiciTrovate.push(c);
-        }
+        for (let i = 0; i < coeff.length; i++) resto = resto * c + coeff[i];
+        if (Math.abs(resto) < 0.0001) radiciTrovate.push(c);
     }
 
     let display = document.getElementById('risultato');
     let uniche = [...new Set(radiciTrovate)].sort((a, b) => Math.abs(a) - Math.abs(b));
     
     if (uniche.length > 0) {
-        // Mostriamo il primo valore trovato che è matematicamente corretto
-        display.innerHTML = "Radice trovata (usa questa per Ruffini): <strong>" + uniche[0] + "</strong>";
+        // Ora il software mostra la frazione!
+        let frazione = decimaleAFrazione(uniche[0]);
+        display.innerHTML = "La radice da usare per Ruffini è: <strong>" + frazione + "</strong>";
     } else {
-        display.innerHTML = "Nessuna radice trovata. Controlla di aver inserito i coefficienti correttamente.";
+        display.innerHTML = "Nessuna radice razionale trovata.";
     }
 }
