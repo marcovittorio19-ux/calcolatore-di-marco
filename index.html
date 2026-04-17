@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Ruffini Solver - 1B Scienze Applicate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Ruffini Solver</h1>
+        <p>Progetto di <strong>Vittorio Di Marco</strong> | 1B Scienze Applicate - Polo Liceale Saffo</p>
+    </header>
+
+    <main>
+        <div class="card">
+            <input type="text" id="coeff" placeholder="Inserisci coeff: es. 1, 2, 0, -3">
+            <button onclick="calcola()">Trova la radice</button>
+            <p id="risultato"></p>
+        </div>
+
+        <section class="spiegazione">
+            <h3>Come funziona?</h3>
+            <p>Questo software applica il <strong>Teorema del Resto</strong>. Analizza i divisori del termine noto e li testa nel polinomio fino a trovare il valore che rende il resto uguale a zero.</p>
+            <ul>
+                <li>Assicurati di includere tutti i coefficienti, anche gli <strong>zeri</strong> per le potenze mancanti.</li>
+                <li>Esempio: x^3 + 2x^2 -3 va inserito come: <strong>1, 2, 0, -3</strong></li>
+            </ul>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
